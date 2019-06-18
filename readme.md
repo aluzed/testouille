@@ -14,3 +14,6 @@ With Jest installed :
 jest
 ```
 
+# Config
+
+To change default port, update `config.js` file.
