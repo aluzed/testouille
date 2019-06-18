@@ -1,7 +1,7 @@
 /**
  * Players Controller
  */
-const dataset = require('../dataset/headtohead.json');
+var dataset = require('../dataset/headtohead.json');
 
 /**
  * Get Players sorted by id
@@ -44,9 +44,10 @@ function RemovePlayerById (id) {
   let players = dataset.players;
   let player = false;
 
-  for(let i = 0; i < players.length; i++) {
+  for(let i = 0; i < players.length && !player; i++) {
     if(players[i].id == id) { // Do not check the type
-      // Should remove here
+      players.splice(i, 1);
+      dataset.players = players;
       player = true; 
     }
   }

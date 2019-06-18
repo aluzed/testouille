@@ -36,8 +36,13 @@ test('Should return null on single player query', function() {
 //======================================================
 // RemovePlayerById
 test('Should enable deletion', function() {
+  let playersBeforeRemoveLength = PlayersController.GetPlayers().length;
+
   let player = PlayersController.RemovePlayerById(65);
   expect(player).toBeTruthy();
+
+  let playersAfterRemoveLength = PlayersController.GetPlayers().length;
+  expect(playersBeforeRemoveLength).toBeGreaterThan(playersAfterRemoveLength);
 })
 
 test('Should return false on player deletion', function() {

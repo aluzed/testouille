@@ -33,9 +33,9 @@ router.get('/:id', function(req, res) {
  * Delete a player
  */
 router.delete('/:id', function(req, res) {
-  let player = PlayersController.GetPlayerById(req.params.id);
+  let player = PlayersController.RemovePlayerById(req.params.id);
 
-  return player ? res.send(`Player ${req.params.id} is now deletable`) : res.status(404).send('Not found');
+  return player ? res.send(`Player ${req.params.id} has been removed`) : res.status(404).send('Not found');
 }) 
 
 module.exports = router;
