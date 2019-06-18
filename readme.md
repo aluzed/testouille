@@ -16,7 +16,7 @@ jest
 
 # Config
 
-To change default port, update `config.js` file.
+To change default port, update `config.js` file. (you must update terraform security group)
 
 # Deploy
 
@@ -33,4 +33,11 @@ exports ->
 ```
 export AWS_ACCESS_KEY_ID=<ACCESSKEY>
 export AWS_SECRET_ACCESS_KEY=<SECRET>
+```
+
+```
+terraform init
+terraform apply
+
+# then type yes
 ```
