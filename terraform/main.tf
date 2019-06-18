@@ -15,8 +15,8 @@ resource "aws_security_group" "my_sg" {
   }
 
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -43,6 +43,13 @@ resource "aws_instance" "web" {
   provisioner "file" {
     source      = "installer.sh"
     destination = "/tmp/installer.sh"
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = "${file("./deployer.pem")}"
+      host        = "${aws_instance.web.public_ip}"
+    }
   }
 
   provisioner "remote-exec" {
@@ -50,6 +57,13 @@ resource "aws_instance" "web" {
       "chmod +x /tmp/installer.sh",
       "/tmp/installer.sh",
     ]
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = "${file("./deployer.pem")}"
+      host        = "${aws_instance.web.public_ip}"
+    }
   }
 
 }
